@@ -1716,11 +1716,13 @@ dependencies = [
  "holochain_client",
  "holochain_types",
  "log",
+ "serde",
  "tauri",
  "tauri-build",
  "tauri-plugin-holochain",
  "tauri-plugin-log",
  "tempdir",
+ "thiserror 2.0.11",
  "url2",
  "uuid 1.13.1",
 ]

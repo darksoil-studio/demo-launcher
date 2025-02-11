@@ -31,7 +31,8 @@
           packages = [ pkgs.pnpm ];
         };
         packages.happ-store = inputs'.happ-store.packages.happ-store_webhapp;
-        packages.ui = inputs'.happ-store.packages.ui;
+        packages.file-storage-provider =
+          inputs'.happ-store.packages.file_storage_provider_aon;
       };
     };
 }

@@ -5,6 +5,8 @@ use tauri_plugin_holochain::{
     vec_to_locked, HolochainExt, HolochainPluginConfig, WANNetworkConfig,
 };
 
+mod commands;
+
 const APP_ID: &'static str = "happ-store";
 const SIGNAL_URL: &'static str = "wss://sbd.holo.host";
 const BOOTSTRAP_URL: &'static str = "https://bootstrap.holo.host";
@@ -26,6 +28,7 @@ pub fn run() {
             vec_to_locked(vec![]).expect("Can't build passphrase"),
             HolochainPluginConfig::new(holochain_dir(), wan_network_config()),
         ))
+        .invoke_handler(tauri::generate_handler![commands::open_happ_store])
         .setup(|app| {
             let handle = app.handle().clone();
             let result: anyhow::Result<()> = tauri::async_runtime::block_on(async move {
@@ -33,13 +36,8 @@ pub fn run() {
 
                 let mut window_builder = app
                     .holochain()?
-                    .web_happ_window_builder(String::from(APP_ID), None)
+                    .main_window_builder(String::from("main"), true, Some(APP_ID.into()), None)
                     .await?;
-
-                // let mut window_builder = app
-                //     .holochain()?
-                //     .main_window_builder(String::from("main"), true, None, None)
-                //     .await?;
 
                 #[cfg(desktop)]
                 {
