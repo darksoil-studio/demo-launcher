@@ -8,6 +8,8 @@
     flake-parts.follows = "holonix/flake-parts";
 
     p2p-shipyard.url = "github:darksoil-studio/p2p-shipyard/main-0.4";
+    # happ-store.url = "github:darksoil-studio/happ-store";
+    happ-store.url = "/home/guillem/projects/darksoil/happ-store";
   };
 
   outputs = inputs:
@@ -15,17 +17,21 @@
       systems = builtins.attrNames inputs.holonix.devShells;
       perSystem = { inputs', config, pkgs, system, ... }: {
         devShells.default = pkgs.mkShell {
-          inputsFrom = [ 
-            inputs'.p2p-shipyard.devShells.holochainTauriDev 
+          inputsFrom = [
+            inputs'.p2p-shipyard.devShells.holochainTauriDev
             inputs'.holonix.devShells.default
           ];
+          packages = [ pkgs.pnpm ];
         };
         devShells.androidDev = pkgs.mkShell {
-          inputsFrom = [ 
-            inputs'.p2p-shipyard.devShells.holochainTauriAndroidDev 
+          inputsFrom = [
+            inputs'.p2p-shipyard.devShells.holochainTauriAndroidDev
             inputs'.holonix.devShells.default
           ];
+          packages = [ pkgs.pnpm ];
         };
+        packages.happ-store = inputs'.happ-store.packages.happ-store_webhapp;
+        packages.ui = inputs'.happ-store.packages.ui;
       };
     };
 }
