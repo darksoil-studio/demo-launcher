@@ -5,8 +5,6 @@ use tauri_plugin_holochain::{
     vec_to_locked, HolochainExt, HolochainPluginConfig, WANNetworkConfig,
 };
 
-mod commands;
-
 const APP_ID: &'static str = "happ-store";
 const SIGNAL_URL: &'static str = "wss://sbd.holo.host";
 const BOOTSTRAP_URL: &'static str = "https://bootstrap.holo.host";
@@ -19,6 +17,7 @@ pub fn webhapp_bundle() -> WebAppBundle {
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .plugin(
             tauri_plugin_log::Builder::default()
                 .level(log::LevelFilter::Warn)
@@ -28,7 +27,6 @@ pub fn run() {
             vec_to_locked(vec![]).expect("Can't build passphrase"),
             HolochainPluginConfig::new(holochain_dir(), wan_network_config()),
         ))
-        .invoke_handler(tauri::generate_handler![commands::open_happ_store])
         .setup(|app| {
             let handle = app.handle().clone();
             let result: anyhow::Result<()> = tauri::async_runtime::block_on(async move {
@@ -36,12 +34,14 @@ pub fn run() {
 
                 let mut window_builder = app
                     .holochain()?
-                    .main_window_builder(String::from("main"), true, Some(APP_ID.into()), None)
+                    .web_happ_window_builder(String::from(APP_ID), None)
                     .await?;
 
                 #[cfg(desktop)]
                 {
-                    window_builder = window_builder.title(String::from("Demo Launcher"));
+                    window_builder = window_builder
+                        .title(String::from("Demo Launcher"))
+                        .inner_size(1200.0, 800.0);
                 }
 
                 window_builder.build()?;

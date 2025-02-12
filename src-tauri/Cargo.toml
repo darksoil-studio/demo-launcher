@@ -24,6 +24,7 @@ holochain_types = { version = "0.4.0" }
 holochain_client = { version = "0.6.0" }
 
 serde = "1"
+serde_json = "1"
 log = "0.4"
 tauri-plugin-log = "2.0.3"
 url2 = "0.0.6"
@@ -32,3 +33,6 @@ tempdir = "0.3.7"
 anyhow = "1"
 uuid = "1"
 thiserror = "2"
+
+[target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
+tauri-plugin-updater = "2"

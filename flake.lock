@@ -1266,11 +1266,11 @@
         "tnesh-stack": "tnesh-stack_9"
       },
       "locked": {
-        "lastModified": 1739284224,
-        "narHash": "sha256-1LCA+X1bwQc0UyZgHbTDzXVUxM3VmEWcCPpkdRnDXKk=",
+        "lastModified": 1739385304,
+        "narHash": "sha256-OhQEqDhB92TPZiNTg5TLAONrnG1ES7BLqZaRLIuTaQ8=",
         "ref": "refs/heads/main",
-        "rev": "fcb1222c8ea4a01f545f3904221d088fdc44a3a0",
-        "revCount": 11,
+        "rev": "3015ef476ba2981cbe691c6e084bdf8017be9af8",
+        "revCount": 16,
         "type": "git",
         "url": "file:///home/guillem/projects/darksoil/happ-store"
       },
@@ -4036,11 +4036,11 @@
         "tnesh-stack": "tnesh-stack_6"
       },
       "locked": {
-        "lastModified": 1739202753,
-        "narHash": "sha256-6aAV8t5vcqNczIA5ahSvoS/unp3Q+/vReqp+gx6L+w8=",
+        "lastModified": 1739380483,
+        "narHash": "sha256-d2Hg85hwl1NGHLIoOJPSLdtL+VKKXn13m8ZzAsCCW3c=",
         "owner": "darksoil-studio",
         "repo": "p2p-shipyard",
-        "rev": "a715aa511b29ebd52c3b6a56be4814bce984ba1d",
+        "rev": "2ed3ad6adb7f61cdd006e88faf1b7a9d4ac3d986",
         "type": "github"
       },
       "original": {
@@ -4116,11 +4116,11 @@
         "tnesh-stack": "tnesh-stack_10"
       },
       "locked": {
-        "lastModified": 1739202753,
-        "narHash": "sha256-6aAV8t5vcqNczIA5ahSvoS/unp3Q+/vReqp+gx6L+w8=",
+        "lastModified": 1739380483,
+        "narHash": "sha256-d2Hg85hwl1NGHLIoOJPSLdtL+VKKXn13m8ZzAsCCW3c=",
         "owner": "darksoil-studio",
         "repo": "p2p-shipyard",
-        "rev": "a715aa511b29ebd52c3b6a56be4814bce984ba1d",
+        "rev": "2ed3ad6adb7f61cdd006e88faf1b7a9d4ac3d986",
         "type": "github"
       },
       "original": {
@@ -5242,11 +5242,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739284150,
-        "narHash": "sha256-d81dcPQT9ezl/LFuwCShRjm/WRsbnEjyA8vrnd5czTQ=",
+        "lastModified": 1739370616,
+        "narHash": "sha256-KAYVGE9IsICBoR2E5t7afF8u0th2D2ZhOfkY/II5YOQ=",
         "owner": "darksoil-studio",
         "repo": "tnesh-stack",
-        "rev": "a2b718a5a510e35781cd611faea2a65b9c9c2004",
+        "rev": "bd15354b81070cc7125f8cc8e77a82d94f6b2c3d",
         "type": "github"
       },
       "original": {

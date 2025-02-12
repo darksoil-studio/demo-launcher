@@ -1722,6 +1722,11 @@
           "const": "holochain:allow-get-runtime-info"
         },
         {
+          "description": "Enables the install_web_app command without any pre-configured scope.",
+          "type": "string",
+          "const": "holochain:allow-install-web-app"
+        },
+        {
           "description": "Enables the is_holochain_ready command without any pre-configured scope.",
           "type": "string",
           "const": "holochain:allow-is-holochain-ready"
@@ -1742,6 +1747,11 @@
           "const": "holochain:allow-sign-zome-call"
         },
         {
+          "description": "Enables the uninstall_web_app command without any pre-configured scope.",
+          "type": "string",
+          "const": "holochain:allow-uninstall-web-app"
+        },
+        {
           "description": "Denies the get_locales command without any pre-configured scope.",
           "type": "string",
           "const": "holochain:deny-get-locales"
@@ -1750,6 +1760,11 @@
           "description": "Denies the get_runtime_info command without any pre-configured scope.",
           "type": "string",
           "const": "holochain:deny-get-runtime-info"
+        },
+        {
+          "description": "Denies the install_web_app command without any pre-configured scope.",
+          "type": "string",
+          "const": "holochain:deny-install-web-app"
         },
         {
           "description": "Denies the is_holochain_ready command without any pre-configured scope.",
@@ -1772,6 +1787,11 @@
           "const": "holochain:deny-sign-zome-call"
         },
         {
+          "description": "Denies the uninstall_web_app command without any pre-configured scope.",
+          "type": "string",
+          "const": "holochain:deny-uninstall-web-app"
+        },
+        {
           "description": "Allows the log command",
           "type": "string",
           "const": "log:default"
@@ -1785,6 +1805,51 @@
           "description": "Denies the log command without any pre-configured scope.",
           "type": "string",
           "const": "log:deny-log"
+        },
+        {
+          "description": "This permission set configures which kind of\nupdater functions are exposed to the frontend.\n\n#### Granted Permissions\n\nThe full workflow from checking for updates to installing them\nis enabled.\n\n",
+          "type": "string",
+          "const": "updater:default"
+        },
+        {
+          "description": "Enables the check command without any pre-configured scope.",
+          "type": "string",
+          "const": "updater:allow-check"
+        },
+        {
+          "description": "Enables the download command without any pre-configured scope.",
+          "type": "string",
+          "const": "updater:allow-download"
+        },
+        {
+          "description": "Enables the download_and_install command without any pre-configured scope.",
+          "type": "string",
+          "const": "updater:allow-download-and-install"
+        },
+        {
+          "description": "Enables the install command without any pre-configured scope.",
+          "type": "string",
+          "const": "updater:allow-install"
+        },
+        {
+          "description": "Denies the check command without any pre-configured scope.",
+          "type": "string",
+          "const": "updater:deny-check"
+        },
+        {
+          "description": "Denies the download command without any pre-configured scope.",
+          "type": "string",
+          "const": "updater:deny-download"
+        },
+        {
+          "description": "Denies the download_and_install command without any pre-configured scope.",
+          "type": "string",
+          "const": "updater:deny-download-and-install"
+        },
+        {
+          "description": "Denies the install command without any pre-configured scope.",
+          "type": "string",
+          "const": "updater:deny-install"
         }
       ]
     },
