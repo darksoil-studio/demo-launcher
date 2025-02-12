@@ -1268,15 +1268,15 @@
       "locked": {
         "lastModified": 1739385304,
         "narHash": "sha256-OhQEqDhB92TPZiNTg5TLAONrnG1ES7BLqZaRLIuTaQ8=",
-        "ref": "refs/heads/main",
+        "owner": "darksoil-studio",
+        "repo": "happ-store",
         "rev": "3015ef476ba2981cbe691c6e084bdf8017be9af8",
-        "revCount": 16,
-        "type": "git",
-        "url": "file:///home/guillem/projects/darksoil/happ-store"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///home/guillem/projects/darksoil/happ-store"
+        "owner": "darksoil-studio",
+        "repo": "happ-store",
+        "type": "github"
       }
     },
     "hc-launch": {

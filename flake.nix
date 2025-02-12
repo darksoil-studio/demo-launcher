@@ -8,8 +8,7 @@
     flake-parts.follows = "holonix/flake-parts";
 
     p2p-shipyard.url = "github:darksoil-studio/p2p-shipyard/main-0.4";
-    # happ-store.url = "github:darksoil-studio/happ-store";
-    happ-store.url = "/home/guillem/projects/darksoil/happ-store";
+    happ-store.url = "github:darksoil-studio/happ-store";
   };
 
   outputs = inputs:
