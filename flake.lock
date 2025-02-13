@@ -1266,11 +1266,11 @@
         "tnesh-stack": "tnesh-stack_9"
       },
       "locked": {
-        "lastModified": 1739456707,
-        "narHash": "sha256-bim1qwB/DDQfbJT3O/cVZrndreLOkrYmYEC04SVYNRs=",
+        "lastModified": 1739458351,
+        "narHash": "sha256-xQnHf8mpZeYeWPBTAtETJZNOWxdYSbSJhl1sqalP7uQ=",
         "owner": "darksoil-studio",
         "repo": "happ-store",
-        "rev": "72ed79b578c5e99a5b135dab57e0231d2adb9dda",
+        "rev": "ea15bc404779f71c98bab862588860d3882c8f3c",
         "type": "github"
       },
       "original": {
