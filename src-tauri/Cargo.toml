@@ -18,8 +18,8 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2.0.3", default-features = false , features = [] }
 
 [dependencies]
-tauri = { version = "2.1.1", features = [] }
-tauri-plugin-holochain = { git = "https://github.com/darksoil-studio/p2p-shipyard", branch = "main-0.4" }
+tauri = { version = "2.1.1", features = [ "devtools" ] }
+tauri-plugin-holochain = { git = "https://github.com/darksoil-studio/p2p-shipyard", branch = "allowed-origins-all" }
 holochain_types = { version = "0.4.0" }
 holochain_client = { version = "0.6.0" }
 
