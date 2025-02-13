@@ -129,11 +129,11 @@
         "tnesh-stack": "tnesh-stack"
       },
       "locked": {
-        "lastModified": 1739465141,
-        "narHash": "sha256-xE2f+9yVFEWy5iGWaKnSvjScprPEBGZDWUh+hGPR3RI=",
+        "lastModified": 1739467328,
+        "narHash": "sha256-XjvCN77rwHolDrhfZvcJlO62rBdovcyg15/pWD6pFaA=",
         "owner": "darksoil-studio",
         "repo": "always-online-nodes",
-        "rev": "746efc5016471a28a0968708eac05e1d3fe9e2e3",
+        "rev": "3b1e5357ded788421ae519d2e7d18a3229ffe78c",
         "type": "github"
       },
       "original": {
@@ -1266,11 +1266,11 @@
         "tnesh-stack": "tnesh-stack_9"
       },
       "locked": {
-        "lastModified": 1739465164,
-        "narHash": "sha256-8Uja193ZB+tsk/STnzxHUmsO5kmV/WfOpNrl9l62Arw=",
+        "lastModified": 1739467340,
+        "narHash": "sha256-6LnnsrZplzNQypZKpVfAvjQjB+Sd0EMh9mrxMjLEpX0=",
         "owner": "darksoil-studio",
         "repo": "happ-store",
-        "rev": "b1f02c9893b91e2e92da6b2931db9a6bba439bbd",
+        "rev": "a25cdaebcd80862aabc29f435756e366e42dc6a0",
         "type": "github"
       },
       "original": {
@@ -4036,11 +4036,11 @@
         "tnesh-stack": "tnesh-stack_6"
       },
       "locked": {
-        "lastModified": 1739465107,
-        "narHash": "sha256-/QArAA1Kv9oR/crqAJ2vwRWIvP+Iz5l/iOlg9UfJn1Q=",
+        "lastModified": 1739467303,
+        "narHash": "sha256-KMZYQ/LUIBuN4/Ek/px4ZSZ63roCL2BVPEcCCaDyxqk=",
         "owner": "darksoil-studio",
         "repo": "p2p-shipyard",
-        "rev": "cc95fbb1ba386d04588dc821c36c5bed39a4a4ec",
+        "rev": "15c40992dc9c21dbbcc2779e4edd44f7ca0fc05e",
         "type": "github"
       },
       "original": {
@@ -4116,11 +4116,11 @@
         "tnesh-stack": "tnesh-stack_10"
       },
       "locked": {
-        "lastModified": 1739465107,
-        "narHash": "sha256-/QArAA1Kv9oR/crqAJ2vwRWIvP+Iz5l/iOlg9UfJn1Q=",
+        "lastModified": 1739467303,
+        "narHash": "sha256-KMZYQ/LUIBuN4/Ek/px4ZSZ63roCL2BVPEcCCaDyxqk=",
         "owner": "darksoil-studio",
         "repo": "p2p-shipyard",
-        "rev": "cc95fbb1ba386d04588dc821c36c5bed39a4a4ec",
+        "rev": "15c40992dc9c21dbbcc2779e4edd44f7ca0fc05e",
         "type": "github"
       },
       "original": {
