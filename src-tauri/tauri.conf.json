@@ -1,6 +1,6 @@
 {
   "productName": "Demo Launcher",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "identifier": "studio.darksoil.demolauncher",
   "build": {},
   "app": {
