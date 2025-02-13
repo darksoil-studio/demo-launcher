@@ -2,7 +2,7 @@ use holochain_types::web_app::WebAppBundle;
 use std::path::PathBuf;
 use tauri::{
     menu::{Menu, MenuItem, PredefinedMenuItem, Submenu},
-    AppHandle, Manager,
+    AppHandle, Manager, 
 };
 use tauri_plugin_dialog::{DialogExt, MessageDialogButtons};
 use tauri_plugin_holochain::{
@@ -31,33 +31,6 @@ pub fn run() {
             vec_to_locked(vec![]).expect("Can't build passphrase"),
             HolochainPluginConfig::new(holochain_dir(), wan_network_config()),
         ))
-        .menu(|handle| {
-            Menu::with_items(
-                handle,
-                &[&Submenu::with_items(
-                    handle,
-                    "File",
-                    true,
-                    &[
-                        &MenuItem::with_id(
-                            handle,
-                            "open-logs-folder",
-                            "Open Logs Folder",
-                            true,
-                            None::<&str>,
-                        )?,
-                        &MenuItem::with_id(
-                            handle,
-                            "factory-reset",
-                            "Factory Reset",
-                            true,
-                            None::<&str>,
-                        )?,
-                        &PredefinedMenuItem::close_window(handle, None)?,
-                    ],
-                )?],
-            )
-        })
         .setup(|app| {
             let handle = app.handle().clone();
 
@@ -65,39 +38,6 @@ pub fn run() {
             // app.handle()
             //     .plugin(tauri_plugin_updater::Builder::new().build())?;
 
-            app.handle()
-                .on_menu_event(|app_handle, menu_event| match menu_event.id().as_ref() {
-                    "open-logs-folder" => {
-                        let log_folder = app_handle
-                            .path()
-                            .app_log_dir()
-                            .expect("Could not get app log dir");
-                        if let Err(err) = opener::reveal(log_folder.clone()) {
-                            log::error!("Failed to open log dir at {log_folder:?}: {err:?}");
-                        }
-                    }
-                    "factory-reset" => {
-                        let h = app_handle.clone();
-                         app_handle
-                                .dialog()
-                                .message("Are you sure you want to perform a factory reset? All your data will be lost.")
-                                .title("Factory Reset")
-                                .buttons(MessageDialogButtons::OkCancel)
-                                .show(move |result| match result {
-                                    true => {
-                                        if let Err(err) = std::fs::remove_dir_all(holochain_dir()) {
-                                            log::error!("Failed to perform factory reset: {err:?}");
-                                        } else {
-                                            h.restart();
-                                        }
-                                    }
-                                    false => {
-            
-                                    }
-                                });
-                    }
-                    _ => {}
-                });
 
             let result: anyhow::Result<()> = tauri::async_runtime::block_on(async move {
                 setup(handle.clone()).await?;
@@ -111,7 +51,66 @@ pub fn run() {
                 {
                     window_builder = window_builder
                         .title(String::from("Demo Launcher"))
-                        .inner_size(1200.0, 800.0);
+                        .inner_size(1200.0, 800.0)
+                        .menu( 
+                            Menu::with_items(
+                                &handle,
+                                &[&Submenu::with_items(
+                                    &handle,
+                                    "File",
+                                    true,
+                                    &[
+                                        &MenuItem::with_id(
+                                           & handle,
+                                            "open-logs-folder",
+                                            "Open Logs Folder",
+                                            true,
+                                            None::<&str>,
+                                        )?,
+                                        &MenuItem::with_id(
+                                           & handle,
+                                            "factory-reset",
+                                            "Factory Reset",
+                                            true,
+                                            None::<&str>,
+                                        )?,
+                                        &PredefinedMenuItem::close_window(&handle, None)?,
+                                    ],
+                                )?],
+                            )?
+                        )
+                        .on_menu_event(|window, menu_event| match menu_event.id().as_ref() {
+                            "open-logs-folder" => {
+                                let log_folder = window.app_handle()
+                                    .path()
+                                    .app_log_dir()
+                                    .expect("Could not get app log dir");
+                                if let Err(err) = opener::reveal(log_folder.clone()) {
+                                    log::error!("Failed to open log dir at {log_folder:?}: {err:?}");
+                                }
+                            }
+                            "factory-reset" => {
+                                let h = window.app_handle().clone();
+                                window.app_handle()
+                                        .dialog()
+                                        .message("Are you sure you want to perform a factory reset? All your data will be lost.")
+                                        .title("Factory Reset")
+                                        .buttons(MessageDialogButtons::OkCancel)
+                                        .show(move |result| match result {
+                                            true => {
+                                                if let Err(err) = std::fs::remove_dir_all(holochain_dir()) {
+                                                    log::error!("Failed to perform factory reset: {err:?}");
+                                                } else {
+                                                    h.restart();
+                                                }
+                                            }
+                                            false => {
+        
+                                            }
+                                        });
+                            }
+                            _ => {}
+                        });
                 }
 
                 window_builder.build()?;
