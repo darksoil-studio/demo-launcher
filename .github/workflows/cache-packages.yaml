@@ -1,0 +1,66 @@
+name: "build-and-cache-packages"
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push: 
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-aon:
+    strategy:
+      matrix:
+        # os: [ubuntu-22.04, macos-latest, macos-13]
+        os: [ubuntu-22.04]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Extend space
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        uses: ./.github/actions/extend-space
+
+      - name: Install nix
+        uses: cachix/install-nix-action@v27
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          nix_path: nixpkgs=channel:nixos-24.11
+
+      - uses: cachix/cachix-action@v15
+        with:
+          name: holochain-ci
+
+      - uses: cachix/cachix-action@v15
+        with:
+          name: darksoil-studio
+
+      - name: 'Setup jq'
+        uses: dcarbone/install-jq-action@v2
+
+      - name: Build happ store
+        env:
+          CACHIX_AUTH_TOKEN: "${{ secrets.DARKSOIL_CACHIX_AUTH_TOKEN }}"
+        run: |
+          cachix watch-exec darksoil-studio -- nix build -L --accept-flake-config --no-update-lock-file .#happ-store
+
+      - name: Pin happ-store
+        if: github.event_name != 'pull_request'
+        env:
+          CACHIX_AUTH_TOKEN: "${{ secrets.DARKSOIL_CACHIX_AUTH_TOKEN }}"
+        run: |
+          cachix pin darksoil-studio happ-store $(nix path-info --json --accept-flake-config --no-warn-dirty .#happ-store | jq -r 'keys[0]')
+
+      - name: Build file storage provider
+        env:
+          CACHIX_AUTH_TOKEN: "${{ secrets.DARKSOIL_CACHIX_AUTH_TOKEN }}"
+        run: |
+          cachix watch-exec darksoil-studio -- nix build -L --accept-flake-config --no-update-lock-file .#file-storage-provider 
+
+      - name: Pin file storage provider
+        if: github.event_name != 'pull_request'
+        env:
+          CACHIX_AUTH_TOKEN: "${{ secrets.DARKSOIL_CACHIX_AUTH_TOKEN }}"
+        run: |
+          cachix pin darksoil-studio file_storage_provider $(nix path-info --json --accept-flake-config --no-warn-dirty .#file-storage-provider | jq -r 'keys[0]')
