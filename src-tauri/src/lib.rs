@@ -20,24 +20,22 @@ pub fn webhapp_bundle() -> WebAppBundle {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    tauri::Builder::default()
+    let mut builder = tauri::Builder::default()
         .plugin(
             tauri_plugin_log::Builder::default()
                 .level(log::LevelFilter::Warn)
                 .build(),
         )
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_holochain::init(
             vec_to_locked(vec![]).expect("Can't build passphrase"),
             HolochainPluginConfig::new(holochain_dir(), wan_network_config()),
         ))
         .setup(|app| {
             let handle = app.handle().clone();
-
-            // #[cfg(not(mobile))]
             // app.handle()
             //     .plugin(tauri_plugin_updater::Builder::new().build())?;
-
 
             let result: anyhow::Result<()> = tauri::async_runtime::block_on(async move {
                 setup(handle.clone()).await?;
@@ -47,7 +45,7 @@ pub fn run() {
                     .web_happ_window_builder(String::from(APP_ID), None)
                     .await?;
 
-                #[cfg(desktop)]
+                #[cfg(not(mobile))]
                 {
                     window_builder = window_builder
                         .title(String::from("Demo Launcher"))
@@ -85,7 +83,7 @@ pub fn run() {
                                     .path()
                                     .app_log_dir()
                                     .expect("Could not get app log dir");
-                                if let Err(err) = opener::reveal(log_folder.clone()) {
+                                if let Err(err) = tauri_plugin_opener::reveal_item_in_dir(log_folder.clone()) {
                                     log::error!("Failed to open log dir at {log_folder:?}: {err:?}");
                                 }
                             }
@@ -121,9 +119,10 @@ pub fn run() {
             result?;
 
             Ok(())
-        })
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        });
+
+        builder.run(tauri::generate_context!())
+               .expect("error while running tauri application");
 }
 
 async fn setup(handle: AppHandle) -> anyhow::Result<()> {
