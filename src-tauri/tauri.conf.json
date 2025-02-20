@@ -23,6 +23,14 @@
     "macOS": {
       "entitlements": "entitlements.plist"
     },
-    "createUpdaterArtifacts": false
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERBQUEzNkEwMDcwMDdBRkIKUldUN2VnQUhvRGFxMnAvVitCaHJlUkpNZXlJWVNLN21WZng0UE84dGxRNk9iVSt5ZG5vVi84NG4K",
+      "endpoints": [
+        "https://github.com/darksoil-studio/demo-launcher/releases/latest/download/latest.json"
+      ]
+    }
   }
 }

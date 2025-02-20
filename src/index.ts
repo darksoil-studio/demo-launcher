@@ -10,7 +10,7 @@ import { msg } from "@lit/localize";
 import { provide } from "@lit/context";
 import { adminWebsocketContext } from "./context";
 import { notifyError, sharedStyles } from "@tnesh-stack/elements";
-import { openHappStore } from "./commands";
+import { openHappStore } from "./commands.js";
 import { SlButton } from "@shoelace-style/shoelace";
 import "./running-apps.js";
 
