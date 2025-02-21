@@ -27,7 +27,7 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IERBQUEzNkEwMDcwMDdBRkIKUldUN2VnQUhvRGFxMnAvVitCaHJlUkpNZXlJWVNLN21WZng0UE84dGxRNk9iVSt5ZG5vVi84NG4K",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDE3RUU3OTAxOUYzN0M2RkEKUldUNnhqZWZBWG51RitCWXhZdFY4RHVhQzY0bVgxU0tnc0JBSm9pSmliZ2pBUGRvOWFlbWV6b24K",
       "endpoints": [
         "https://github.com/darksoil-studio/demo-launcher/releases/latest/download/latest.json"
       ]
