@@ -1,12 +1,14 @@
 use holochain_types::web_app::WebAppBundle;
 use std::path::PathBuf;
 use tauri::{AppHandle, Manager};
-#[cfg(not(mobile))]
-use tauri::menu::{Menu, MenuItem, PredefinedMenuItem, Submenu};
 use tauri_plugin_dialog::{DialogExt, MessageDialogButtons};
 use tauri_plugin_holochain::{
     vec_to_locked, HolochainExt, HolochainPluginConfig, WANNetworkConfig,
 };
+#[cfg(not(mobile))]
+use tauri::menu::{Menu, MenuItem, PredefinedMenuItem, Submenu};
+#[cfg(not(mobile))]
+use tauri_plugin_updater::UpdaterExt;
 
 const APP_ID: &'static str = "happ-store";
 const SIGNAL_URL: &'static str = "wss://sbd.holo.host";
@@ -38,6 +40,25 @@ pub fn run() {
             app.handle().plugin(tauri_plugin_updater::Builder::new().build())?;
 
             let result: anyhow::Result<()> = tauri::async_runtime::block_on(async move {
+                #[cfg(not(mobile))]
+                {
+                    let updater = app.handle().updater()?;
+                    let dialog = app.handle().dialog();
+
+                    if let Ok(Some(update)) = updater.check().await {
+                        let handle = app.handle().clone();
+                        tauri::async_runtime::spawn(async move {
+                            let result = update.download_and_install(|_c, _| {}, || {}).await;
+                            if let Err(err) = result {
+                                log::error!("Error installing the update: {err:?}");
+                            } else {
+                                handle.restart();
+                            }
+                        });
+                        dialog.message("Updating app...").blocking_show();
+                    }
+                }
+
                 setup(handle.clone()).await?;
 
                 let mut window_builder = app

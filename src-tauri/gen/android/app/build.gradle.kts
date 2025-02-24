@@ -17,7 +17,7 @@ android {
     compileSdk = 34
     namespace = "studio.darksoil.demolauncher"
     defaultConfig {
-        manifestPlaceholders["usesCleartextTraffic"] = "false"
+        manifestPlaceholders["usesCleartextTraffic"] = "true"
         applicationId = "studio.darksoil.demolauncher"
         minSdk = 24
         targetSdk = 34
