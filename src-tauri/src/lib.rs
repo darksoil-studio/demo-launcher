@@ -47,15 +47,16 @@ pub fn run() {
 
                     if let Ok(Some(update)) = updater.check().await {
                         let handle = app.handle().clone();
-                        tauri::async_runtime::spawn(async move {
-                            let result = update.download_and_install(|_c, _| {}, || {}).await;
-                            if let Err(err) = result {
-                                log::error!("Error installing the update: {err:?}");
-                            } else {
-                                handle.restart();
-                            }
-                        });
-                        dialog.message("Updating app...").blocking_show();
+                        dialog.message("Updating app...")
+                            .kind(tauri_plugin_dialog::MessageDialogKind::Info)
+                            .title("New Update Found")
+                            .show(|_| {});
+                        let result = update.download_and_install(|_c, _| {}, || {}).await;
+                        if let Err(err) = result {
+                            log::error!("Error installing the update: {err:?}");
+                        } else {
+                            handle.restart();
+                        }
                     }
                 }
 
