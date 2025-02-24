@@ -8,7 +8,7 @@
     "network": "pnpm build:happ-store && concurrently -k \"pnpm file-storage-provider\" \"pnpm launch\" \"hc playground\"",
     "network:android": "pnpm build:happ-store && concurrently -k \"pnpm file-storage-provider\" \"pnpm tauri dev --no-watch\" \"pnpm tauri android dev --no-watch\" \"hc playground\"",
     "build:happ-store": "nix build .#happ-store -o happ-store.webhapp",
-    "launch": "concurrently-repeat \"pnpm tauri dev\" $AGENTS",
+    "launch": "concurrently-repeat \"pnpm tauri dev --release\" $AGENTS",
     "file-storage-provider": "rimraf /tmp/fsp && mkdir /tmp/fsp && nix run .#file-storage-provider -- --lan-only --data-dir /tmp/fsp",
     "dev": "vite",
     "build": "tsc && vite build",
