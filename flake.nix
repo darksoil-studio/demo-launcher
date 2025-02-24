@@ -7,7 +7,8 @@
     nixpkgs.follows = "holonix/nixpkgs";
     flake-parts.follows = "holonix/flake-parts";
 
-    p2p-shipyard.url = "github:darksoil-studio/p2p-shipyard/main-0.4";
+    p2p-shipyard.url = "github:darksoil-studio/p2p-shipyard/wamr";
+    playground.url = "github:darksoil-studio/holochain-playground/main-0.4";
     happ-store.url = "github:darksoil-studio/happ-store";
   };
 
@@ -20,14 +21,14 @@
             inputs'.p2p-shipyard.devShells.holochainTauriDev
             inputs'.holonix.devShells.default
           ];
-          packages = [ pkgs.pnpm ];
+          packages = [ pkgs.pnpm inputs'.playground.packages.hc-playground ];
         };
         devShells.androidDev = pkgs.mkShell {
           inputsFrom = [
             inputs'.p2p-shipyard.devShells.holochainTauriAndroidDev
             inputs'.holonix.devShells.default
           ];
-          packages = [ pkgs.pnpm ];
+          packages = [ pkgs.pnpm inputs'.playground.packages.hc-playground ];
         };
         packages.happ-store = inputs'.happ-store.packages.happ-store_webhapp;
         packages.file-storage-provider =

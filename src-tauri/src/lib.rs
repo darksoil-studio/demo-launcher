@@ -1,9 +1,8 @@
 use holochain_types::web_app::WebAppBundle;
 use std::path::PathBuf;
-use tauri::{
-    menu::{Menu, MenuItem, PredefinedMenuItem, Submenu},
-    AppHandle, Manager, 
-};
+use tauri::{AppHandle, Manager};
+#[cfg(not(mobile))]
+use tauri::menu::{Menu, MenuItem, PredefinedMenuItem, Submenu};
 use tauri_plugin_dialog::{DialogExt, MessageDialogButtons};
 use tauri_plugin_holochain::{
     vec_to_locked, HolochainExt, HolochainPluginConfig, WANNetworkConfig,

@@ -6,8 +6,6 @@
   "permissions": [
     "core:default",
     "core:window:allow-set-title",
-    "updater:default",
-    "process:default",
     "holochain:allow-open-app",
     "holochain:allow-install-web-app",
     "holochain:allow-uninstall-web-app",
