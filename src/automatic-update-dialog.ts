@@ -1,9 +1,8 @@
 import { msg } from "@lit/localize";
-import "@shoelace-style/shoelace/dist/components/dialog/dialog.js";
 import "@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js";
 import { relaunch } from "@tauri-apps/plugin-process";
 import { Update, check } from "@tauri-apps/plugin-updater";
-import { LitElement, html } from "lit";
+import { LitElement, html, css } from "lit";
 import { customElement, state } from "lit/decorators.js";
 
 @customElement("automatic-update-dialog")
@@ -27,34 +26,36 @@ export class AutomaticUpdateDialog extends LitElement {
     // if (this.shouldBeMovedToApplicationsDirectory) return;
 
     this.appUpdate = await check();
-    if (this.appUpdate) {
-      console.log(
-        `found update ${this.appUpdate.version} from ${this.appUpdate.date} with notes ${this.appUpdate.body}`,
-      );
-      // alternatively we could also call update.download() and update.install() separately
-      await this.appUpdate.downloadAndInstall((event) => {
-        switch (event.event) {
-          case "Started":
-            this.contentLength = event.data.contentLength;
-            console.log(
-              `started downloading ${event.data.contentLength} bytes`,
-            );
-            break;
-          case "Progress":
-            this.downloaded += event.data.chunkLength;
-            console.log(
-              `downloaded ${this.downloaded} from ${this.contentLength}`,
-            );
-            break;
-          case "Finished":
-            console.log("download finished");
-            break;
-        }
-      });
 
-      console.log("update installed");
+    if (!this.appUpdate) {
       await relaunch();
+      return;
     }
+    console.log(this.appUpdate);
+    console.log(
+      `found update ${this.appUpdate.version} from ${this.appUpdate.date} with notes ${this.appUpdate.body}`,
+    );
+    // alternatively we could also call update.download() and update.install() separately
+    await this.appUpdate.downloadAndInstall((event) => {
+      switch (event.event) {
+        case "Started":
+          this.contentLength = event.data.contentLength;
+          console.log(`started downloading ${event.data.contentLength} bytes`);
+          break;
+        case "Progress":
+          this.downloaded += event.data.chunkLength;
+          console.log(
+            `downloaded ${this.downloaded} from ${this.contentLength}`,
+          );
+          break;
+        case "Finished":
+          console.log("download finished");
+          break;
+      }
+    });
+
+    console.log("update installed");
+    await relaunch();
   }
 
   render() {
@@ -80,28 +81,37 @@ export class AutomaticUpdateDialog extends LitElement {
     //     </sl-dialog>
     //   `;
 
-    if (!this.appUpdate) return html``;
-
     return html`
-      <sl-dialog
-        open
-        no-header
-        @sl-request-close=${(e: CustomEvent) => {
-          e.preventDefault();
-        }}
+      <div
+        class="column"
+        style="gap: 24px; flex: 1; align-items: center; justify-content: center"
       >
-        <div class="column" style="gap: 24px">
-          <span class="title">${msg("New update found")} </span>
-          <span>${msg("Installing update...")} </span>
-          <sl-progress-bar
-            .value=${this.contentLength
-              ? (100 * this.downloaded) / this.contentLength
-              : 0}
-          ></sl-progress-bar>
-        </div>
-      </sl-dialog>
+        <span class="title">${msg("New update found")} </span>
+        <span>${msg("Installing update...")} </span>
+        <sl-progress-bar
+          .value=${this.contentLength
+            ? (100 * this.downloaded) / this.contentLength
+            : 0}
+          style="width: 200px"
+        ></sl-progress-bar>
+      </div>
     `;
   }
 
-  // static styles = appStyles;
+  static styles = css`
+    :host {
+      display: flex;
+    }
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
+    .column {
+      display: flex;
+      flex-direction: column;
+    }
+    .title {
+      font-size: 20px;
+    }
+  `;
 }

@@ -20,5 +20,6 @@ export default defineConfig(async () => ({
           port: 1430,
         }
       : undefined,
+    watch: undefined,
   },
 }));

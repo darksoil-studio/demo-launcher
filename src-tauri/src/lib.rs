@@ -1,6 +1,6 @@
 use holochain_types::web_app::WebAppBundle;
 use std::path::PathBuf;
-use tauri::{AppHandle, Manager};
+use tauri::{AppHandle, Manager, WebviewWindowBuilder};
 use tauri_plugin_dialog::{DialogExt, MessageDialogButtons};
 use tauri_plugin_holochain::{
     vec_to_locked, HolochainExt, HolochainPluginConfig, WANNetworkConfig,
@@ -43,20 +43,11 @@ pub fn run() {
                 #[cfg(not(mobile))]
                 {
                     let updater = app.handle().updater()?;
-                    let dialog = app.handle().dialog();
 
-                    if let Ok(Some(update)) = updater.check().await {
-                        let handle = app.handle().clone();
-                        dialog.message("Updating app...")
-                            .kind(tauri_plugin_dialog::MessageDialogKind::Info)
-                            .title("New Update Found")
-                            .show(|_| {});
-                        let result = update.download_and_install(|_c, _| {}, || {}).await;
-                        if let Err(err) = result {
-                            log::error!("Error installing the update: {err:?}");
-                        } else {
-                            handle.restart();
-                        }
+                    if let Ok(Some(_update)) = updater.check().await {
+                        WebviewWindowBuilder::new(app.handle(), "updater", tauri::WebviewUrl::App("".into())).title("Update Found").inner_size(400.0, 300.0).build()?;
+
+                        return Ok(());
                     }
                 }
 

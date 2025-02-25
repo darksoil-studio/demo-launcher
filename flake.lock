@@ -1561,11 +1561,11 @@
         "tnesh-stack": "tnesh-stack_9"
       },
       "locked": {
-        "lastModified": 1740501515,
-        "narHash": "sha256-b1N2rtqAiYlFDfF89RXnc9gpTph4Pqvjq8tKva1o5Zc=",
+        "lastModified": 1740501686,
+        "narHash": "sha256-KtbRxGkvfy5sD091XRm+/tMZsqFA35e5o/Ke9CQpwfU=",
         "owner": "darksoil-studio",
         "repo": "happ-store",
-        "rev": "61f73c9d9831df11a06d453269222aeb0cc0f9e9",
+        "rev": "f66d5c4914a6e2bfd3525d50d96544ad1fdb64b8",
         "type": "github"
       },
       "original": {

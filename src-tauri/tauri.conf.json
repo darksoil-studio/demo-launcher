@@ -1,8 +1,12 @@
 {
   "productName": "Demo Launcher",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "identifier": "studio.darksoil.demolauncher",
-  "build": {},
+  "build": {
+    "beforeBuildCommand": "pnpm build",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
   "app": {
     "withGlobalTauri": false,
     "security": {
