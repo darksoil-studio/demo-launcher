@@ -150,11 +150,11 @@
         "tnesh-stack": "tnesh-stack"
       },
       "locked": {
-        "lastModified": 1740403528,
-        "narHash": "sha256-8jQKup5Mu4zyYj9zgDO8RNlm4ImpIfWGcxsKI4ie/LY=",
+        "lastModified": 1740501378,
+        "narHash": "sha256-OiL/NzugGP6qxzyDICQG2AYPusGDQTsXA3W9bcd+cWQ=",
         "owner": "darksoil-studio",
         "repo": "always-online-nodes",
-        "rev": "9970ab10db2e36a6da09c07ae8ca779cd395ab6a",
+        "rev": "c45a8ef9565ba670b17c9b9ba36ee422aa2cd4c2",
         "type": "github"
       },
       "original": {
@@ -1561,11 +1561,11 @@
         "tnesh-stack": "tnesh-stack_9"
       },
       "locked": {
-        "lastModified": 1740411732,
-        "narHash": "sha256-bVW/Op9TqrMcXjV143HDgG8zb4pJfiMYdlnjXVIORmE=",
+        "lastModified": 1740501515,
+        "narHash": "sha256-b1N2rtqAiYlFDfF89RXnc9gpTph4Pqvjq8tKva1o5Zc=",
         "owner": "darksoil-studio",
         "repo": "happ-store",
-        "rev": "d8a6cccb6e8be5c16c1b36ba41b849bb0f545cba",
+        "rev": "61f73c9d9831df11a06d453269222aeb0cc0f9e9",
         "type": "github"
       },
       "original": {
@@ -5219,11 +5219,11 @@
         "tnesh-stack": "tnesh-stack_10"
       },
       "locked": {
-        "lastModified": 1740396854,
-        "narHash": "sha256-6TAsbUZyottnt+ehAk33ZwO4G6yy65w/b28zsH7eDhw=",
+        "lastModified": 1740500924,
+        "narHash": "sha256-i6BHJsUITb0vGVAOLmfq7XwVHsWme2Coh38DR/zBxzs=",
         "owner": "darksoil-studio",
         "repo": "p2p-shipyard",
-        "rev": "32fec7542e2eb07d17c174880e99e92fda44bc72",
+        "rev": "e60bc8bec09478c7cd606cdb60977e36afa3254d",
         "type": "github"
       },
       "original": {
@@ -5314,11 +5314,11 @@
         "tnesh-stack": "tnesh-stack_8"
       },
       "locked": {
-        "lastModified": 1739532516,
-        "narHash": "sha256-SY6htljIvrOafa9r520H3j3BtSd/I6i0HpZbRE4h7rg=",
+        "lastModified": 1740487746,
+        "narHash": "sha256-7iQIiQJ53Mw+L/UHfWwCFqsB9wJwo5oCCoFAPDZ2pR4=",
         "owner": "darksoil-studio",
         "repo": "holochain-playground",
-        "rev": "5ff1623d1650690e9175a33a6c2d3a2240931ce5",
+        "rev": "14c9010d69413959afc69bc05dfa22d9e9e8aa7e",
         "type": "github"
       },
       "original": {
@@ -5340,11 +5340,11 @@
         "tnesh-stack": "tnesh-stack_12"
       },
       "locked": {
-        "lastModified": 1739532516,
-        "narHash": "sha256-SY6htljIvrOafa9r520H3j3BtSd/I6i0HpZbRE4h7rg=",
+        "lastModified": 1740487746,
+        "narHash": "sha256-7iQIiQJ53Mw+L/UHfWwCFqsB9wJwo5oCCoFAPDZ2pR4=",
         "owner": "darksoil-studio",
         "repo": "holochain-playground",
-        "rev": "5ff1623d1650690e9175a33a6c2d3a2240931ce5",
+        "rev": "14c9010d69413959afc69bc05dfa22d9e9e8aa7e",
         "type": "github"
       },
       "original": {
