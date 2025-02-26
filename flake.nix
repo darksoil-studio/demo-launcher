@@ -34,7 +34,7 @@
         packages.file-storage-provider =
           inputs'.happ-store.packages.file_storage_provider_aon;
         packages.file-storage-provider_happ =
-          inputs'.happ-store.packages.file_storage_provider_aon;
+          inputs'.happ-store.packages.file_storage_provider_happ;
       };
     };
 }
