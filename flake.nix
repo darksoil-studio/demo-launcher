@@ -33,6 +33,8 @@
         packages.happ-store = inputs'.happ-store.packages.happ-store_webhapp;
         packages.file-storage-provider =
           inputs'.happ-store.packages.file_storage_provider_aon;
+        packages.file-storage-provider_happ =
+          inputs'.happ-store.packages.file_storage_provider_aon;
       };
     };
 }
