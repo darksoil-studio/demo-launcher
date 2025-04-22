@@ -7,7 +7,7 @@
     nixpkgs.follows = "holonix/nixpkgs";
     flake-parts.follows = "holonix/flake-parts";
 
-    p2p-shipyard.url = "github:darksoil-studio/p2p-shipyard/wamr";
+    p2p-shipyard.url = "github:darksoil-studio/p2p-shipyard/main-0.4";
     playground.url = "github:darksoil-studio/holochain-playground/main-0.4";
     happ-store.url = "github:darksoil-studio/happ-store";
   };
