@@ -15,7 +15,7 @@
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake { inherit inputs; } {
       systems = builtins.attrNames inputs.holonix.devShells;
-      perSystem = { inputs', config, pkgs, system, ... }: {
+      perSystem = { inputs', config, pkgs, system, ... }: rec {
         devShells.default = pkgs.mkShell {
           inputsFrom = [
             inputs'.p2p-shipyard.devShells.holochainTauriDev
@@ -26,9 +26,8 @@
         devShells.androidDev = pkgs.mkShell {
           inputsFrom = [
             inputs'.p2p-shipyard.devShells.holochainTauriAndroidDev
-            inputs'.holonix.devShells.default
+            devShells.default
           ];
-          packages = [ pkgs.pnpm inputs'.playground.packages.hc-playground ];
         };
         packages.happ-store = inputs'.happ-store.packages.happ-store_webhapp;
         packages.file-storage-provider =
