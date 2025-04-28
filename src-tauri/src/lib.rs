@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use tauri::{AppHandle, Manager, WebviewWindowBuilder};
 use tauri_plugin_dialog::{DialogExt, MessageDialogButtons};
 use tauri_plugin_holochain::{
-    vec_to_locked, HolochainExt, HolochainPluginConfig, WANNetworkConfig,
+    vec_to_locked, HolochainExt, HolochainPluginConfig, NetworkConfig,
 };
 #[cfg(not(mobile))]
 use tauri::menu::{Menu, MenuItem, PredefinedMenuItem, Submenu};
@@ -11,8 +11,6 @@ use tauri::menu::{Menu, MenuItem, PredefinedMenuItem, Submenu};
 use tauri_plugin_updater::UpdaterExt;
 
 const APP_ID: &'static str = "happ-store";
-const SIGNAL_URL: &'static str = "wss://sbd.holo.host";
-const BOOTSTRAP_URL: &'static str = "https://bootstrap.holo.host";
 
 pub fn webhapp_bundle() -> WebAppBundle {
     let bytes = include_bytes!("../../happ-store.webhapp");
@@ -31,8 +29,8 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_process::init())
         .plugin(tauri_plugin_holochain::init(
-            vec_to_locked(vec![]).expect("Can't build passphrase"),
-            HolochainPluginConfig::new(holochain_dir(), wan_network_config()),
+            vec_to_locked(vec![]),
+            HolochainPluginConfig::new(holochain_dir(), network_config()),
         ))
         .setup(|app| {
             let handle = app.handle().clone();
@@ -167,16 +165,20 @@ async fn setup(handle: AppHandle) -> anyhow::Result<()> {
     }
 }
 
-fn wan_network_config() -> Option<WANNetworkConfig> {
+fn network_config() -> NetworkConfig {
+    let mut network_config = NetworkConfig::default();
+
+    // Don't use the bootstrap service on tauri dev mode
     if tauri::is_dev() {
-        None
-    } else {
-        Some(WANNetworkConfig {
-            signal_url: url2::url2!("{}", SIGNAL_URL),
-            bootstrap_url: url2::url2!("{}", BOOTSTRAP_URL),
-            ice_servers_urls: vec![],
-        })
+        network_config.bootstrap_url = url2::Url2::parse("http://0.0.0.0:8888");
     }
+
+    // Don't hold any slice of the DHT in mobile
+    if cfg!(mobile) {
+        network_config.target_arc_factor = 0;
+    }
+
+    network_config
 }
 
 fn holochain_dir() -> PathBuf {

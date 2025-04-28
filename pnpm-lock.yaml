@@ -8,12 +8,12 @@ importers:
 
   .:
     dependencies:
-      '@darksoil-studio/file-storage-zome':
-        specifier: 0.400.0-rev.d4819e883590e7f23589a2f137512910209ff424
-        version: 0.400.0-rev.d4819e883590e7f23589a2f137512910209ff424(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
+      '@darksoil-studio/holochain-elements':
+        specifier: ^0.500.0
+        version: 0.500.0(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
       '@holochain/client':
-        specifier: ^0.18.0
-        version: 0.18.0
+        specifier: ^0.19.0
+        version: 0.19.0
       '@lit/context':
         specifier: ^1.1.3
         version: 1.1.3
@@ -38,9 +38,6 @@ importers:
       '@tauri-apps/plugin-updater':
         specifier: ^2.0.0
         version: 2.5.0
-      '@tnesh-stack/elements':
-        specifier: ^0.400.1
-        version: 0.400.1(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
       lit:
         specifier: ^3.2.1
         version: 3.2.1
@@ -78,6 +75,9 @@ importers:
 
   site:
     dependencies:
+      '@darksoil-studio/holochain-elements':
+        specifier: ^0.500.0
+        version: 0.500.0(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
       '@mdi/js':
         specifier: ^7.2.0
         version: 7.4.47
@@ -87,9 +87,6 @@ importers:
       '@shoelace-style/shoelace':
         specifier: ^2.11.0
         version: 2.20.0(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
-      '@tnesh-stack/elements':
-        specifier: ^0.400.0-rc
-        version: 0.400.1(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
       http-server:
         specifier: ^14.1.1
         version: 14.1.1
@@ -127,8 +124,14 @@ packages:
     resolution: {integrity: sha512-WyOx8cJQ+FQus4Mm4uPIZA64gbk3Wxh0so5Lcii0aJifqwoVOlfFtorjLE0Hen4OYyHZMXDWqMmaQemBhgxFRQ==}
     engines: {node: '>=14'}
 
-  '@darksoil-studio/file-storage-zome@0.400.0-rev.d4819e883590e7f23589a2f137512910209ff424':
-    resolution: {integrity: sha512-O9yCN7/3Wp71HBTKyawEpwAtLp+uZ2iA87aMufnYWOdBmlgBQk0wAKRgESPX6t/POkn7COTTRL9exsaEKkbxdQ==}
+  '@darksoil-studio/holochain-elements@0.500.0':
+    resolution: {integrity: sha512-ByatMh1LW6je5Ne27UP8JvnZBjzBm0RJuXjqi7Jvm0CoGLbYXIqtTso0A6n7sPeIM+Qu/IHx1uRFfDj4MoYWIA==}
+
+  '@darksoil-studio/holochain-signals@0.500.0':
+    resolution: {integrity: sha512-qMv9lxT2Ll4boP/xoFoAgB3p6wsFA+qqGwmI0MNOpyQu3Raaw3lkOizOg9wP942gWFT2GTwiwbVl0R8IarbVlw==}
+
+  '@darksoil-studio/holochain-utils@0.500.0':
+    resolution: {integrity: sha512-E966Km27pimvxpSfpcCG8rjt+qBYTRJOhxe7LcJ4aS0HJuDQqb+m1VD/woDy6BPQ1UTEziYiw/ocnQ1YW4fgVA==}
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -412,13 +415,9 @@ packages:
   '@holo-host/identicon@0.1.0':
     resolution: {integrity: sha512-Dn5pTV/m3XaK1Zvq3liw/vQUt7goM7Y84x2zUyH8cb9CNMs4kPCNHs3kalbJZ/ymzFvwcdiLwwNW8AKk+WWN5A==}
 
-  '@holochain/client@0.18.0':
-    resolution: {integrity: sha512-I+YIJ2ZeDS8HeUdRvV1Ti9O8m3YPHti8mpUoqg9GZ0A77y+3NIihsB1X8vQBRBFKwNUyZ14U/ZgWQ8/2Y0/T5w==}
+  '@holochain/client@0.19.0':
+    resolution: {integrity: sha512-LAiuQwyAQlLJp5Y0uT7EKuWy2AoCxMLdTECCLOs8ALADZzhNykFi2rmeC9hzskPXMR441bOhHPBWynqzQH95Ew==}
     engines: {node: '>=18.0.0 || >=20.0.0'}
-
-  '@holochain/serialization@0.1.0-beta-rc.3':
-    resolution: {integrity: sha512-DJx4V2KXHVLciyOGjOYKTM/JLBpBEZ3RsPIRCgf7qmwhQdxXvhi2p+oFFRD51yUT5uC1/MzIVeJCl/R60PwFbw==}
-    deprecated: Holochain no longer requires canonical serialization of zome call payloads
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -429,9 +428,6 @@ packages:
 
   '@lit-labs/ssr-dom-shim@1.3.0':
     resolution: {integrity: sha512-nQIWonJ6eFAvUUrSlwyHDm/aE8PBDu5kRpL0vHMg6K8fK3Diq1xdPjTnsJSwxABhaZ+5eBi1btQB5ShUTKo4nQ==}
-
-  '@lit-labs/task@2.1.2':
-    resolution: {integrity: sha512-pDjPYojmCXnOezT/4BgqxHA2kahmSsCE0y6uPCYyVqigIx9DJav05s0KAtD9IImTY3LvWu5isSlq6nkWagAybA==}
 
   '@lit/context@1.1.3':
     resolution: {integrity: sha512-Auh37F4S0PZM93HTDfZWs97mmzaQ7M3vnTc9YvxAGyP3UItSK/8Fs0vTOGT+njuvOwbKio/l8Cx/zWL4vkutpQ==}
@@ -456,6 +452,10 @@ packages:
   '@msgpack/msgpack@2.8.0':
     resolution: {integrity: sha512-h9u4u/jiIRKbq25PM+zymTyW6bhTzELvOoUd+AvYriWOAKpLGnIamaET3pnHYoI5iYphAHBI4ayx0MehR+VVPQ==}
     engines: {node: '>= 10'}
+
+  '@msgpack/msgpack@3.1.1':
+    resolution: {integrity: sha512-DnBpqkMOUGayNVKyTLlkM6ILmU/m/+VUxGkuQlPQVAcvreLz5jn1OlQnWd8uHKL/ZSiljpM12rjRhr51VtvJUQ==}
+    engines: {node: '>= 18'}
 
   '@rocket/components@0.2.0':
     resolution: {integrity: sha512-N15uUVrpNPJNp/vNtsWsyDaGxblrmC7+uRmY/GloUS+6PyByQPGDVV9GIgUcnrmU2GvM9MtMQyo16q7M4zNndA==}
@@ -555,9 +555,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@scoped-elements/dropzone@0.2.7':
-    resolution: {integrity: sha512-/3qcTHanOQ7YayikIw2cmmSA0QMEcedadHiIHiUjNtyf9VjwVL50HLt09MKkRQYKbxFbR4EsKRFTFmiJdmiJew==}
-
   '@shoelace-style/animations@1.2.0':
     resolution: {integrity: sha512-avvo1xxkLbv2dgtabdewBbqcJfV0e0zCwFqkPMnHFGbJbBHorRFfMAHh1NG9ymmXn0jW95ibUVH03E1NYXD6Gw==}
 
@@ -645,20 +642,8 @@ packages:
   '@tauri-apps/plugin-updater@2.5.0':
     resolution: {integrity: sha512-CWpwrkgpMESDPgJ0EuXgQTI/U9zeZQ9NLUvMyuWVrsuRez7tJ/3c7y73LAkvkI6+ekUxVaRJrxYrSfd8W+DRvQ==}
 
-  '@tnesh-stack/elements@0.400.1':
-    resolution: {integrity: sha512-kKD4G1KjzqUNjlOY8xjIH7/zRyYztJZgBTv3FhMRQ1DKoB6pCXPpuKuuxY85wFIioeCX1aegwbGaFJCLMzqsXQ==}
-
-  '@tnesh-stack/utils@0.400.0':
-    resolution: {integrity: sha512-M03HRTPdXWZJNAl9JIS42WWkZLVb4Au/yZnijdrrq0L/swjU515rOAefTPljKzn7CmU7uH6uXmGFIob0/eE0kA==}
-
-  '@types/dropzone@5.7.9':
-    resolution: {integrity: sha512-c6IlUz+DeQ4gANzJKn8fdP5rO6UyDNOyWLjfPbDRUHCNsXaAVKQOpuOv6LWEyvaK7pLqmoIpvSIlvBgGsk1vGw==}
-
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
-
-  '@types/jquery@3.5.32':
-    resolution: {integrity: sha512-b9Xbf4CkMqS02YH8zACqN1xzdxc3cO735Qe5AbSUFmyOiaWAbcpqh9Wna+Uk0vgACvoQHpWDg2rGdHkYPLmCiQ==}
 
   '@types/minimist@1.2.5':
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
@@ -668,9 +653,6 @@ packages:
 
   '@types/react@19.0.8':
     resolution: {integrity: sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw==}
-
-  '@types/sizzle@2.3.9':
-    resolution: {integrity: sha512-xzLEyKB50yqCUPUJkIsrVvoWNfFUbIZI+RspLWt8u+tIW/BetMBZtgV2LY/2o+tYH8dRvQ+eoPf3NdhQCcLE2w==}
 
   '@types/trusted-types@2.0.7':
     resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
@@ -697,6 +679,9 @@ packages:
   arrify@1.0.1:
     resolution: {integrity: sha512-3CYzex9M9FGQjCGMGyi6/31c8GJbgb0qGyrx5HWxPd0aCwh4cB2YjMb2Xf9UuoogrMrlO9cTqnB5rI5GHZTcUA==}
     engines: {node: '>=0.10.0'}
+
+  async-signals@0.1.11:
+    resolution: {integrity: sha512-ooYxYRwcOOAVQ8QFVu+Xt0PRB3dHVzGgWyFyE+h6BkdGKXD+b1eecIrNWTDgBQGp5yV/le8zpSTp1KKVRYgtBg==}
 
   async@2.6.4:
     resolution: {integrity: sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==}
@@ -805,9 +790,6 @@ packages:
   default-gateway@6.0.3:
     resolution: {integrity: sha512-fwSOJsbbNzZ/CUFpqFBqYfYNLj1NbMPm8MMCIzHjC83iSJRBEGmDUxU+WP661BaBQImeC2yHwXtz+P/O9o+XEg==}
     engines: {node: '>= 10'}
-
-  dropzone@5.9.3:
-    resolution: {integrity: sha512-Azk8kD/2/nJIuVPK+zQ9sjKMRIpRvNyqn9XwbBHNq+iNuSccbJS6hwm1Woy0pMST0erSo0u4j+KJaodndDk4vA==}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -960,9 +942,6 @@ packages:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
 
-  idb-keyval@6.2.1:
-    resolution: {integrity: sha512-8Sb3veuYCyrZL+VBt9LJfZjLUPWVvqn8tG28VqYNFCo43KHcKuq+b4EiXGeuaLAQWL2YmyDgMp2aSpH9JHsEQg==}
-
   indent-string@5.0.0:
     resolution: {integrity: sha512-m6FAo/spmsW2Ab2fU35JTYwtOKa2yAwXSwgjSv1TJzh4Mh7mC3lzAOVLBprb72XsTrgkEIsl7YrFNAiDiRhIGg==}
     engines: {node: '>=12'}
@@ -1026,6 +1005,9 @@ packages:
   js-base64@3.7.7:
     resolution: {integrity: sha512-7rCnleh0z2CkXhH67J8K1Ytz0b2Y+yxTPL+/KOJoa20hfnVQ/3/T6W/KflYI4bRHRagNeXeU2bkNGI3v1oS/lw==}
 
+  js-sha512@0.9.0:
+    resolution: {integrity: sha512-mirki9WS/SUahm+1TbAPkqvbCiCfOAAsyXeHxK1UkullnJVVqoJG2pL9ObvT05CN+tM7fxhfYm0NbXn+1hWoZg==}
+
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -1056,6 +1038,9 @@ packages:
 
   lit-html@3.2.1:
     resolution: {integrity: sha512-qI/3lziaPMSKsrwlxH/xMgikhQ0EGOX2ICU73Bi/YHFvz2j/yMCIrw4+puF2IpQ4+upd3EWbvnHM9+PnJn48YA==}
+
+  lit-signal-watcher@0.1.1:
+    resolution: {integrity: sha512-OUAEqcKI7NY6/1md4Hy3RqoQOpiv+GiYO6ISDt8JTeXKW3YditiAACYsfEZ8mwGxfCLcRSfWLdKgNFntiYqm+Q==}
 
   lit@2.8.0:
     resolution: {integrity: sha512-4Sc3OFX9QHOJaHbmTMk28SYgVxLN3ePDjg7hofEft2zWlehFL3LiAuapWc4U/kYwMYJSh2hTCPZ6/LIC7ii0MA==}
@@ -1327,6 +1312,9 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
+  signal-polyfill@0.1.2:
+    resolution: {integrity: sha512-HT9d+L9NMiTzMxb/tU2Baym6129ROyRETSjvchvSkQa7wN0+SrG/IUlsaBLqKn2c+4mlze6CgQBEvgBjxOpiaQ==}
+
   sort-keys@5.1.0:
     resolution: {integrity: sha512-aSbHV0DaBcr7u0PVHXzM6NbZNAtrr9sF6+Qfs9UUVG7Ll3jQ6hHi8F/xqIIcn2rvIVbr0v/2zyjSdwSV47AgLQ==}
     engines: {node: '>=12'}
@@ -1555,23 +1543,47 @@ snapshots:
 
   '@ctrl/tinycolor@4.1.0': {}
 
-  '@darksoil-studio/file-storage-zome@0.400.0-rev.d4819e883590e7f23589a2f137512910209ff424(@floating-ui/utils@0.2.9)(@types/react@19.0.8)':
+  '@darksoil-studio/holochain-elements@0.500.0(@floating-ui/utils@0.2.9)(@types/react@19.0.8)':
     dependencies:
-      '@holochain/client': 0.18.0
-      '@lit-labs/task': 2.1.2
+      '@darksoil-studio/holochain-signals': 0.500.0
+      '@darksoil-studio/holochain-utils': 0.500.0
+      '@holo-host/identicon': 0.1.0
+      '@holochain/client': 0.19.0
+      '@lit-labs/router': 0.1.3
       '@lit/context': 1.1.3
       '@lit/localize': 0.12.2
       '@mdi/js': 7.4.47
-      '@scoped-elements/dropzone': 0.2.7(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
       '@shoelace-style/shoelace': 2.20.0(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
-      '@tnesh-stack/elements': 0.400.1(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
-      '@tnesh-stack/utils': 0.400.0
-      idb-keyval: 6.2.1
-      js-base64: 3.7.7
       lit: 3.2.1
     transitivePeerDependencies:
       - '@floating-ui/utils'
       - '@types/react'
+      - bufferutil
+      - utf-8-validate
+
+  '@darksoil-studio/holochain-signals@0.500.0':
+    dependencies:
+      '@darksoil-studio/holochain-utils': 0.500.0
+      '@holochain/client': 0.19.0
+      '@msgpack/msgpack': 2.8.0
+      async-signals: 0.1.11
+      lit-signal-watcher: 0.1.1
+      lodash-es: 4.17.21
+      signal-polyfill: 0.1.2
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@darksoil-studio/holochain-utils@0.500.0':
+    dependencies:
+      '@holochain/client': 0.19.0
+      '@msgpack/msgpack': 2.8.0
+      blakejs: 1.2.1
+      emittery: 1.1.0
+      js-base64: 3.7.7
+      lodash-es: 4.17.21
+      sort-keys: 5.1.0
+    transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
@@ -1723,22 +1735,20 @@ snapshots:
 
   '@holo-host/identicon@0.1.0': {}
 
-  '@holochain/client@0.18.0':
+  '@holochain/client@0.19.0':
     dependencies:
       '@bitgo/blake2b': 3.2.4
-      '@holochain/serialization': 0.1.0-beta-rc.3
-      '@msgpack/msgpack': 2.8.0
+      '@msgpack/msgpack': 3.1.1
       emittery: 1.1.0
       isomorphic-ws: 5.0.0(ws@8.18.0)
       js-base64: 3.7.7
+      js-sha512: 0.9.0
       libsodium-wrappers: 0.7.15
       lodash-es: 4.17.21
       ws: 8.18.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
-
-  '@holochain/serialization@0.1.0-beta-rc.3': {}
 
   '@isaacs/cliui@8.0.2':
     dependencies:
@@ -1754,10 +1764,6 @@ snapshots:
       lit: 3.2.1
 
   '@lit-labs/ssr-dom-shim@1.3.0': {}
-
-  '@lit-labs/task@2.1.2':
-    dependencies:
-      '@lit/reactive-element': 1.6.3
 
   '@lit/context@1.1.3':
     dependencies:
@@ -1782,6 +1788,8 @@ snapshots:
   '@mdi/js@7.4.47': {}
 
   '@msgpack/msgpack@2.8.0': {}
+
+  '@msgpack/msgpack@3.1.1': {}
 
   '@rocket/components@0.2.0':
     dependencies:
@@ -1845,17 +1853,6 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.34.6':
     optional: true
-
-  '@scoped-elements/dropzone@0.2.7(@floating-ui/utils@0.2.9)(@types/react@19.0.8)':
-    dependencies:
-      '@mdi/js': 7.4.47
-      '@shoelace-style/shoelace': 2.20.0(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
-      '@types/dropzone': 5.7.9
-      dropzone: 5.9.3
-      lit: 2.8.0
-    transitivePeerDependencies:
-      - '@floating-ui/utils'
-      - '@types/react'
 
   '@shoelace-style/animations@1.2.0': {}
 
@@ -1932,45 +1929,7 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.2.0
 
-  '@tnesh-stack/elements@0.400.1(@floating-ui/utils@0.2.9)(@types/react@19.0.8)':
-    dependencies:
-      '@holo-host/identicon': 0.1.0
-      '@holochain/client': 0.18.0
-      '@lit-labs/router': 0.1.3
-      '@lit/context': 1.1.3
-      '@lit/localize': 0.12.2
-      '@mdi/js': 7.4.47
-      '@shoelace-style/shoelace': 2.20.0(@floating-ui/utils@0.2.9)(@types/react@19.0.8)
-      '@tnesh-stack/utils': 0.400.0
-      lit: 3.2.1
-    transitivePeerDependencies:
-      - '@floating-ui/utils'
-      - '@types/react'
-      - bufferutil
-      - utf-8-validate
-
-  '@tnesh-stack/utils@0.400.0':
-    dependencies:
-      '@holochain/client': 0.18.0
-      '@msgpack/msgpack': 2.8.0
-      blakejs: 1.2.1
-      emittery: 1.1.0
-      js-base64: 3.7.7
-      lodash-es: 4.17.21
-      sort-keys: 5.1.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  '@types/dropzone@5.7.9':
-    dependencies:
-      '@types/jquery': 3.5.32
-
   '@types/estree@1.0.6': {}
-
-  '@types/jquery@3.5.32':
-    dependencies:
-      '@types/sizzle': 2.3.9
 
   '@types/minimist@1.2.5': {}
 
@@ -1979,8 +1938,6 @@ snapshots:
   '@types/react@19.0.8':
     dependencies:
       csstype: 3.1.3
-
-  '@types/sizzle@2.3.9': {}
 
   '@types/trusted-types@2.0.7': {}
 
@@ -1997,6 +1954,11 @@ snapshots:
   ansi-styles@6.2.1: {}
 
   arrify@1.0.1: {}
+
+  async-signals@0.1.11:
+    dependencies:
+      lit: 3.2.1
+      signal-polyfill: 0.1.2
 
   async@2.6.4:
     dependencies:
@@ -2116,8 +2078,6 @@ snapshots:
   default-gateway@6.0.3:
     dependencies:
       execa: 5.1.1
-
-  dropzone@5.9.3: {}
 
   dunder-proto@1.0.1:
     dependencies:
@@ -2317,8 +2277,6 @@ snapshots:
     dependencies:
       safer-buffer: 2.1.2
 
-  idb-keyval@6.2.1: {}
-
   indent-string@5.0.0: {}
 
   internal-ip-cli@2.0.0:
@@ -2367,6 +2325,8 @@ snapshots:
 
   js-base64@3.7.7: {}
 
+  js-sha512@0.9.0: {}
+
   js-tokens@4.0.0: {}
 
   json-parse-even-better-errors@2.3.1: {}
@@ -2400,6 +2360,11 @@ snapshots:
   lit-html@3.2.1:
     dependencies:
       '@types/trusted-types': 2.0.7
+
+  lit-signal-watcher@0.1.1:
+    dependencies:
+      lit: 3.2.1
+      signal-polyfill: 0.1.2
 
   lit@2.8.0:
     dependencies:
@@ -2680,6 +2645,8 @@ snapshots:
   signal-exit@3.0.7: {}
 
   signal-exit@4.1.0: {}
+
+  signal-polyfill@0.1.2: {}
 
   sort-keys@5.1.0:
     dependencies:
