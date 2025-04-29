@@ -19,7 +19,7 @@ pub fn webhapp_bundle() -> WebAppBundle {
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
-    let mut builder = tauri::Builder::default()
+    tauri::Builder::default()
         .plugin(
             tauri_plugin_log::Builder::default()
                 .level(log::LevelFilter::Warn)
@@ -130,10 +130,9 @@ pub fn run() {
             result?;
 
             Ok(())
-        });
-
-        builder.run(tauri::generate_context!())
-               .expect("error while running tauri application");
+        })
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }
 
 async fn setup(handle: AppHandle) -> anyhow::Result<()> {
@@ -171,6 +170,10 @@ fn network_config() -> NetworkConfig {
     // Don't use the bootstrap service on tauri dev mode
     if tauri::is_dev() {
         network_config.bootstrap_url = url2::Url2::parse("http://0.0.0.0:8888");
+        network_config.signal_url = url2::Url2::parse("ws://0.0.0.0:8888");
+    } else {
+        network_config.bootstrap_url = url2::Url2::parse("http://157.180.93.55:8888");
+        network_config.signal_url = url2::Url2::parse("ws://157.180.93.55:8888");
     }
 
     // Don't hold any slice of the DHT in mobile
@@ -213,7 +216,8 @@ fn holochain_dir() -> PathBuf {
             },
         )
         .expect("Could not get app root")
-        .join("holochain")
         .join(std::env!("CARGO_PKG_VERSION"))
+        .join("holochain")
     }
 }
+

@@ -28,6 +28,9 @@
             inputs'.p2p-shipyard.devShells.holochainTauriAndroidDev
             devShells.default
           ];
+          shellHook = ''
+            export CARGO_TARGET_DIR=$(pwd)/src-tauri/target/android
+          '';
         };
         packages.happ-store = inputs'.happ-store.packages.happ-store_webhapp;
         packages.file-storage-provider =
