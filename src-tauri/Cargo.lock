@@ -1721,7 +1721,7 @@ checksum = "da692b8d1080ea3045efaab14434d40468c3d8657e42abddfffca87b428f4c1b"
 
 [[package]]
 name = "demo-launcher"
-version = "0.2.1"
+version = "0.2.2"
 dependencies = [
  "anyhow",
  "app_dirs2",
@@ -1732,6 +1732,7 @@ dependencies = [
  "serde_json",
  "tauri",
  "tauri-build",
+ "tauri-plugin-barcode-scanner",
  "tauri-plugin-dialog",
  "tauri-plugin-holochain",
  "tauri-plugin-log",
@@ -3510,7 +3511,7 @@ dependencies = [
 [[package]]
 name = "holochain_runtime"
 version = "0.1.0"
-source = "git+https://github.com/darksoil-studio/p2p-shipyard?branch=wamr-0.5#c4f10f5c3ec99e4317f04c97ff372a56350cd487"
+source = "git+https://github.com/darksoil-studio/p2p-shipyard?branch=main-0.5#d5fff19f13d2ca7aaa4c3a6c8e1915e4bf2cbed3"
 dependencies = [
  "anyhow",
  "arbitrary",
@@ -8618,6 +8619,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "tauri-plugin-barcode-scanner"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c93f902a129a56710cd977210ac2c3f7f114c89639e6092f9c78483130a3a6e1"
+dependencies = [
+ "log",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-plugin",
+ "thiserror 2.0.12",
+]
+
+[[package]]
 name = "tauri-plugin-dialog"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -8661,7 +8676,7 @@ dependencies = [
 [[package]]
 name = "tauri-plugin-holochain"
 version = "0.0.0"
-source = "git+https://github.com/darksoil-studio/p2p-shipyard?branch=wamr-0.5#c4f10f5c3ec99e4317f04c97ff372a56350cd487"
+source = "git+https://github.com/darksoil-studio/p2p-shipyard?branch=main-0.5#d5fff19f13d2ca7aaa4c3a6c8e1915e4bf2cbed3"
 dependencies = [
  "anyhow",
  "bzip2 0.4.4",
@@ -9952,7 +9967,6 @@ dependencies = [
  "wasmer-derive",
  "wasmer-types",
  "wasmer-vm",
- "wasmparser 0.216.1",
  "wat",
  "windows-sys 0.59.0",
  "xz",

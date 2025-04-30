@@ -33,10 +33,12 @@ pub fn run() {
             HolochainPluginConfig::new(holochain_dir(), network_config()),
         ))
         .setup(|app| {
-            let handle = app.handle().clone();
+            #[cfg(mobile)]
+            app.handle().plugin(tauri_plugin_barcode_scanner::init())?;
             #[cfg(not(mobile))]
             app.handle().plugin(tauri_plugin_updater::Builder::new().build())?;
 
+            let handle = app.handle().clone();
             let result: anyhow::Result<()> = tauri::async_runtime::block_on(async move {
                 #[cfg(not(mobile))]
                 {
@@ -169,8 +171,8 @@ fn network_config() -> NetworkConfig {
 
     // Don't use the bootstrap service on tauri dev mode
     if tauri::is_dev() {
-        network_config.bootstrap_url = url2::Url2::parse("http://0.0.0.0:8888");
-        network_config.signal_url = url2::Url2::parse("ws://0.0.0.0:8888");
+        network_config.bootstrap_url = url2::Url2::parse("http://localhost:34399");
+        network_config.signal_url = url2::Url2::parse("ws://localhost:34399");
     } else {
         network_config.bootstrap_url = url2::Url2::parse("http://157.180.93.55:8888");
         network_config.signal_url = url2::Url2::parse("ws://157.180.93.55:8888");
@@ -186,27 +188,13 @@ fn network_config() -> NetworkConfig {
 
 fn holochain_dir() -> PathBuf {
     if tauri::is_dev() {
-        #[cfg(target_os = "android")]
-        {
-            app_dirs2::app_root(
-                app_dirs2::AppDataType::UserCache,
-                &app_dirs2::AppInfo {
-                    name: "demo-launcher",
-                    author: std::env!("CARGO_PKG_AUTHORS"),
-                },
-            )
-            .expect("Could not get the UserCache directory")
-        }
-        #[cfg(not(target_os = "android"))]
-        {
-            let tmp_dir = tempdir::TempDir::new("demo-launcher")
-                .expect("Could not create temporary directory");
+        let tmp_dir = tempdir::TempDir::new("demo-launcher")
+            .expect("Could not create temporary directory");
 
-            // Convert `tmp_dir` into a `Path`, destroying the `TempDir`
-            // without deleting the directory.
-            let tmp_path = tmp_dir.into_path();
-            tmp_path
-        }
+        // Convert `tmp_dir` into a `Path`, destroying the `TempDir`
+        // without deleting the directory.
+        let tmp_path = tmp_dir.into_path();
+        tmp_path
     } else {
         app_dirs2::app_root(
             app_dirs2::AppDataType::UserData,

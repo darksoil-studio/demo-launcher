@@ -1,6 +1,6 @@
 {
   "productName": "Demo Launcher",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "identifier": "studio.darksoil.demolauncher",
   "build": {
     "beforeBuildCommand": "pnpm build",
@@ -10,9 +10,12 @@
   "app": {
     "withGlobalTauri": false,
     "security": {
-      "csp": null
-    },
-    "windows": []
+      "capabilities": [
+        "mobile-capability",
+        "main-capability",
+        "desktop-capability"
+      ]
+    }
   },
   "bundle": {
     "active": true,
