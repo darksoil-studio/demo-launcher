@@ -1,6 +1,6 @@
 [package]
 name = "demo-launcher"
-version = "0.2.2"
+version = "0.2.3"
 description = "Demo Launcher"
 authors = ["you"]
 license = ""
