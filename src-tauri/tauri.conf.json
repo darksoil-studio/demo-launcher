@@ -1,6 +1,6 @@
 {
   "productName": "Demo Launcher",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "identifier": "studio.darksoil.demolauncher",
   "build": {
     "beforeBuildCommand": "pnpm build",

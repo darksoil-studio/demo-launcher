@@ -45,7 +45,10 @@ pub fn run() {
                     let updater = app.handle().updater()?;
 
                     if let Ok(Some(_update)) = updater.check().await {
-                        WebviewWindowBuilder::new(app.handle(), "updater", tauri::WebviewUrl::App("".into())).title("Update Found").inner_size(400.0, 300.0).build()?;
+                        WebviewWindowBuilder::new(app.handle(), "updater", tauri::WebviewUrl::App("".into())).title("Update Found")
+                            .inner_size(400.0, 300.0)
+                            .disable_drag_drop_handler()
+                            .build()?;
 
                         return Ok(());
                     }
@@ -122,6 +125,10 @@ pub fn run() {
                             }
                             _ => {}
                         });
+                }
+                #[cfg(target_os = "windows")]
+                {
+                    window_builder = window_builder.disable_drag_drop_handler();
                 }
 
                 window_builder.build()?;
