@@ -183,6 +183,11 @@ fn network_config() -> NetworkConfig {
     } else {
         network_config.bootstrap_url = url2::Url2::parse("http://157.180.93.55:8888");
         network_config.signal_url = url2::Url2::parse("ws://157.180.93.55:8888");
+        network_config.webrtc_config = Some(serde_json::json!({
+            "ice_servers": {
+                "urls": ["stun://stun.l.google.com:19302"]
+            },
+        }));
     }
 
     // Don't hold any slice of the DHT in mobile
