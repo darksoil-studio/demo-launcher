@@ -1,6 +1,6 @@
 use holochain_types::web_app::WebAppBundle;
 use std::path::PathBuf;
-use tauri::{AppHandle, Manager, WebviewWindowBuilder};
+use tauri::{AppHandle, Listener, Manager, WebviewWindowBuilder};
 use tauri_plugin_dialog::{DialogExt, MessageDialogButtons};
 use tauri_plugin_holochain::{
     vec_to_locked, HolochainExt, HolochainPluginConfig, NetworkConfig,
@@ -28,7 +28,7 @@ pub fn run() {
         .plugin(tauri_plugin_dialog::init())
         .plugin(tauri_plugin_opener::init())
         .plugin(tauri_plugin_process::init())
-        .plugin(tauri_plugin_holochain::init(
+        .plugin(tauri_plugin_holochain::async_init(
             vec_to_locked(vec![]),
             HolochainPluginConfig::new(holochain_dir(), network_config()),
         ))
@@ -37,111 +37,113 @@ pub fn run() {
             app.handle().plugin(tauri_plugin_barcode_scanner::init())?;
             #[cfg(not(mobile))]
             app.handle().plugin(tauri_plugin_updater::Builder::new().build())?;
-
+            
             let handle = app.handle().clone();
-            let result: anyhow::Result<()> = tauri::async_runtime::block_on(async move {
-                #[cfg(not(mobile))]
-                {
-                    let updater = app.handle().updater()?;
-
-                    if let Ok(Some(_update)) = updater.check().await {
-                        WebviewWindowBuilder::new(app.handle(), "updater", tauri::WebviewUrl::App("".into())).title("Update Found")
-                            .inner_size(400.0, 300.0)
-                            .disable_drag_drop_handler()
-                            .build()?;
-
-                        return Ok(());
+            app.handle().listen("holochain://setup-completed", move |_event| {
+                let handle = handle.clone();
+                tauri::async_runtime::spawn(async move {
+                    if let Err(err) = setup_and_open(handle).await {
+                        log::error!("Failed to setup app: {err:?}");
                     }
-                }
-
-                setup(handle.clone()).await?;
-
-                let mut window_builder = app
-                    .holochain()?
-                    .web_happ_window_builder(String::from(APP_ID), None)
-                    .await?;
-
-                #[cfg(not(mobile))]
-                {
-                    window_builder = window_builder
-                        .title(String::from("Demo Launcher"))
-                        .inner_size(1200.0, 800.0)
-                        .menu( 
-                            Menu::with_items(
-                                &handle,
-                                &[&Submenu::with_items(
-                                    &handle,
-                                    "File",
-                                    true,
-                                    &[
-                                        &MenuItem::with_id(
-                                           & handle,
-                                            "open-logs-folder",
-                                            "Open Logs Folder",
-                                            true,
-                                            None::<&str>,
-                                        )?,
-                                        &MenuItem::with_id(
-                                           & handle,
-                                            "factory-reset",
-                                            "Factory Reset",
-                                            true,
-                                            None::<&str>,
-                                        )?,
-                                        &PredefinedMenuItem::close_window(&handle, None)?,
-                                    ],
-                                )?],
-                            )?
-                        )
-                        .on_menu_event(|window, menu_event| match menu_event.id().as_ref() {
-                            "open-logs-folder" => {
-                                let log_folder = window.app_handle()
-                                    .path()
-                                    .app_log_dir()
-                                    .expect("Could not get app log dir");
-                                if let Err(err) = tauri_plugin_opener::reveal_item_in_dir(log_folder.clone()) {
-                                    log::error!("Failed to open log dir at {log_folder:?}: {err:?}");
-                                }
-                            }
-                            "factory-reset" => {
-                                let h = window.app_handle().clone();
-                                window.app_handle()
-                                        .dialog()
-                                        .message("Are you sure you want to perform a factory reset? All your data will be lost.")
-                                        .title("Factory Reset")
-                                        .buttons(MessageDialogButtons::OkCancel)
-                                        .show(move |result| match result {
-                                            true => {
-                                                if let Err(err) = std::fs::remove_dir_all(holochain_dir()) {
-                                                    log::error!("Failed to perform factory reset: {err:?}");
-                                                } else {
-                                                    h.restart();
-                                                }
-                                            }
-                                            false => {
-        
-                                            }
-                                        });
-                            }
-                            _ => {}
-                        });
-                }
-                #[cfg(target_os = "windows")]
-                {
-                    window_builder = window_builder.disable_drag_drop_handler();
-                }
-
-                window_builder.build()?;
-
-                Ok(())
+                });
             });
-
-            result?;
 
             Ok(())
         })
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+}
+
+async fn setup_and_open(handle: AppHandle) -> anyhow::Result<()> {
+ #[cfg(not(mobile))]
+    {
+        let updater = handle.updater()?;
+
+        if let Ok(Some(_update)) = updater.check().await {
+            WebviewWindowBuilder::new(&handle, "updater", tauri::WebviewUrl::App("".into())).title("Update Found")
+                .inner_size(400.0, 300.0)
+                .build()?;
+
+            return Ok(());
+        }
+    }
+
+    setup(handle.clone()).await?;
+
+    let mut window_builder = handle
+        .holochain()?
+        .web_happ_window_builder(String::from(APP_ID), None)
+        .await?;
+
+    #[cfg(not(mobile))]
+    {
+        window_builder = window_builder
+            .title(String::from("Demo Launcher"))
+            .inner_size(1200.0, 800.0)
+            .menu( 
+                Menu::with_items(
+                    &handle,
+                    &[&Submenu::with_items(
+                        &handle,
+                        "File",
+                        true,
+                        &[
+                            &MenuItem::with_id(
+                               & handle,
+                                "open-logs-folder",
+                                "Open Logs Folder",
+                                true,
+                                None::<&str>,
+                            )?,
+                            &MenuItem::with_id(
+                               & handle,
+                                "factory-reset",
+                                "Factory Reset",
+                                true,
+                                None::<&str>,
+                            )?,
+                            &PredefinedMenuItem::close_window(&handle, None)?,
+                        ],
+                    )?],
+                )?
+            )
+            .on_menu_event(|window, menu_event| match menu_event.id().as_ref() {
+                "open-logs-folder" => {
+                    let log_folder = window.app_handle()
+                        .path()
+                        .app_log_dir()
+                        .expect("Could not get app log dir");
+                    if let Err(err) = tauri_plugin_opener::reveal_item_in_dir(log_folder.clone()) {
+                        log::error!("Failed to open log dir at {log_folder:?}: {err:?}");
+                    }
+                }
+                "factory-reset" => {
+                    let h = window.app_handle().clone();
+                    window.app_handle()
+                            .dialog()
+                            .message("Are you sure you want to perform a factory reset? All your data will be lost.")
+                            .title("Factory Reset")
+                            .buttons(MessageDialogButtons::OkCancel)
+                            .show(move |result| match result {
+                                true => {
+                                    if let Err(err) = std::fs::remove_dir_all(holochain_dir()) {
+                                        log::error!("Failed to perform factory reset: {err:?}");
+                                    } else {
+                                        h.restart();
+                                    }
+                                }
+                                false => {
+
+                                }
+                            });
+                }
+                _ => {}
+            });
+    }
+
+    window_builder.build()?;
+
+    Ok(())
 }
 
 async fn setup(handle: AppHandle) -> anyhow::Result<()> {

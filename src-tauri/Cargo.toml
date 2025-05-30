@@ -19,7 +19,7 @@ tauri-build = { version = "2.0.3", default-features = false , features = [] }
 
 [dependencies]
 tauri = { version = "2.1.1", features = [ "devtools" ] }
-tauri-plugin-holochain = { git = "https://github.com/darksoil-studio/p2p-shipyard", branch = "main-0.5" }
+tauri-plugin-holochain = { git = "https://github.com/darksoil-studio/tauri-plugin-holochain", branch = "main-0.5" }
 holochain_types = { version = "0.5" }
 holochain_client = { version = "0.7" }
 
@@ -44,22 +44,21 @@ tauri-plugin-updater = "2"
 tauri-plugin-barcode-scanner = "2"
 
 [patch.crates-io]
-# holochain = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
-# holochain_types = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
-# holochain_zome_types = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
-# holochain_integrity_types = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
-# holochain_p2p = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
-# holochain_timestamp = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
-# holochain_nonce = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
-# holochain_keystore = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
-# mr_bundle = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
-# holochain_conductor_api = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
-# holo_hash = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+holochain = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+holochain_types = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+holochain_zome_types = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+holochain_integrity_types = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+holochain_p2p = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+holochain_timestamp = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+holochain_nonce = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+holochain_keystore = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+mr_bundle = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+holochain_conductor_api = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
+holo_hash = { git = "https://github.com/guillemcordoba/holochain", branch = "develop-0.5" }
 
-# kitsune2 = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
-# kitsune2_api = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
-# kitsune2_core = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
-# kitsune2_dht = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
-# kitsune2_gossip = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
-# kitsune2_bootstrap_client = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
-tauri = { git = "https://github.com/guillemcordoba/tauri", branch = "dev" }
+kitsune2 = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
+kitsune2_api = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
+kitsune2_core = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
+kitsune2_dht = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
+kitsune2_gossip = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }
+kitsune2_bootstrap_client = { git = "https://github.com/guillemcordoba/kitsune2", branch = "iroh-transport" }

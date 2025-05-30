@@ -7,7 +7,8 @@
     nixpkgs.follows = "holonix/nixpkgs";
     flake-parts.follows = "holonix/flake-parts";
 
-    p2p-shipyard.url = "github:darksoil-studio/p2p-shipyard/main-0.5";
+    tauri-plugin-holochain.url =
+      "github:darksoil-studio/tauri-plugin-holochain/main-0.5";
     playground.url = "github:darksoil-studio/holochain-playground/main-0.5";
     happ-store.url = "github:darksoil-studio/happ-store";
   };
@@ -18,14 +19,14 @@
       perSystem = { inputs', config, pkgs, system, ... }: rec {
         devShells.default = pkgs.mkShell {
           inputsFrom = [
-            inputs'.p2p-shipyard.devShells.holochainTauriDev
+            inputs'.tauri-plugin-holochain.devShells.holochainTauriDev
             inputs'.holonix.devShells.default
           ];
           packages = [ pkgs.pnpm inputs'.playground.packages.hc-playground ];
         };
         devShells.androidDev = pkgs.mkShell {
           inputsFrom = [
-            inputs'.p2p-shipyard.devShells.holochainTauriAndroidDev
+            inputs'.tauri-plugin-holochain.devShells.holochainTauriAndroidDev
             devShells.default
           ];
           shellHook = ''
