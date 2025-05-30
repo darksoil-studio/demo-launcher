@@ -8,7 +8,7 @@
     flake-parts.follows = "holonix/flake-parts";
 
     tauri-plugin-holochain.url =
-      "github:darksoil-studio/tauri-plugin-holochain/main-0.5";
+      "github:darksoil-studio/tauri-plugin-holochain/develop";
     playground.url = "github:darksoil-studio/holochain-playground/main-0.5";
     happ-store.url = "github:darksoil-studio/happ-store";
   };

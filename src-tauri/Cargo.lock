@@ -1775,7 +1775,7 @@ checksum = "da692b8d1080ea3045efaab14434d40468c3d8657e42abddfffca87b428f4c1b"
 
 [[package]]
 name = "demo-launcher"
-version = "0.2.8"
+version = "0.2.9"
 dependencies = [
  "anyhow",
  "app_dirs2",
