@@ -15382,16 +15382,16 @@
         "webkitnixpkgs": "webkitnixpkgs_6"
       },
       "locked": {
-        "lastModified": 1748865940,
+        "lastModified": 1748866023,
         "narHash": "sha256-jf1z6DVvPUkWuTIHbQ4bZkw1v3okbMbCO3nleFehZWk=",
         "owner": "darksoil-studio",
         "repo": "tauri-plugin-holochain",
-        "rev": "8847fe08f0c123ffa1821ca82b896223e4640704",
+        "rev": "54829c8a2fa419064d2facdcc438a33853fff7e6",
         "type": "github"
       },
       "original": {
         "owner": "darksoil-studio",
-        "ref": "develop",
+        "ref": "main-0.5",
         "repo": "tauri-plugin-holochain",
         "type": "github"
       }
