@@ -151,7 +151,6 @@ jobs:
           prerelease: true
           args: ${{ matrix.args }}
 
-
   release-tauri-android-app:
     needs: publish-happ
     permissions: write-all
@@ -199,7 +198,7 @@ jobs:
 
       - name: Install and Build 🔧 
         run: |
-          nix develop --accept-flake-config .#androidDev --command bash -c "pnpm install && pnpm tauri android build -t x86_64 -t aarch64 -t i686"
+          nix develop --accept-flake-config .#androidDev --command bash -c "pnpm install && pnpm tauri android build"
  
       - uses: AButler/upload-release-assets@v3.0
         with:
