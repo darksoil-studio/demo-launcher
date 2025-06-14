@@ -1,5 +1,5 @@
 use holochain_types::web_app::WebAppBundle;
-use std::path::PathBuf;
+use std::{path::PathBuf, time::Duration};
 use tauri::{AppHandle, Listener, Manager, WebviewWindowBuilder};
 use tauri_plugin_dialog::{DialogExt, MessageDialogButtons};
 use tauri_plugin_holochain::{
@@ -48,6 +48,14 @@ pub fn run() {
                 });
             });
 
+            let handle = app.handle().clone();
+            #[cfg(mobile)]
+            app.handle().listen("tauri://webview-created", move |_event| {
+                if let Err(err) = handle.plugin(tauri_plugin_barcode_scanner::init()) {
+                    log::error!("Failed to init barcode plugin: {err:?}");
+                }
+            });
+
             Ok(())
         })
         .run(tauri::generate_context!())
@@ -55,7 +63,7 @@ pub fn run() {
 }
 
 async fn setup_and_open(handle: AppHandle) -> anyhow::Result<()> {
- #[cfg(not(mobile))]
+    #[cfg(not(mobile))]
     {
         let updater = handle.updater()?;
 
